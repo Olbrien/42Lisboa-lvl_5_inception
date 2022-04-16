@@ -9,7 +9,8 @@ You can find the subject of this project [here.](https://github.com/Olbrien/42Li
 
 ## Useful Links:
 
-[hub.docker.com](https://hub.docker.com)
+[hub.docker.com](https://hub.docker.com)\
+[dockerfile instructions](https://www.fosstechnix.com/dockerfile-instructions/)
 
 ## Research:
 
@@ -19,7 +20,6 @@ Docker:
 
 	Docker is a tool designed to make it easier to create, deploy, and run applications by
 	using containers.
-
 
 -------------------------------------------------------------------------------------------------
 
@@ -41,7 +41,6 @@ Container:
 
 
 	Containers are made of images.
-
 
 -------------------------------------------------------------------------------------------------
 
@@ -117,6 +116,32 @@ Commands:
 	docker network create "name"
 		Creates a new network.
 
+	sudo docker system prune -a:
+		Deletes everything (doesn't stop running images)
+
+	sudo docker system prune --volumes -a:
+		Deletes everything include volumes.
+
+	sudo docker inspect <container name> | grep IPAddress
+		This gets the real ip of the container. Sometimes you can't connect on 127.0.0.1, This
+		gets the real ip.
+
+		WARNING: Ip changes every time you docker-compose down / up.
+				The best thing is to use the ones below.
+
+	Connecting to a docker container ip:
+		Sometimes you get errors when you can't connnect to 127.0.0.1
+
+		linux = 172.17.0.1
+		mac   = host.docker.internal
+
+
+	sudo docker rm -f $(sudo docker ps -a -q):
+		removes all images from "docker ps -a"
+
+	sudo docker rmi -f $(sudo docker images -a -q):
+		removes all images from "docker images -a"
+
 
 -------------------------------------------------------------------------------------------------
 
@@ -183,6 +208,100 @@ Dockerfile:
 
 	To run the new image you type:
 		"docker run "name you gave""
+
+Instructions:
+
+    https://www.fosstechnix.com/dockerfile-instructions/
+
+    FROM:
+        Used to specify Docker Image Name and start the build process.
+
+            FROM ubuntu:latest
+
+    CMD:
+        Used to execute a command in Running container, there should be one CMD in
+        a Dockerfile. Executes the command when your Docker Image is deployed.
+
+            FROM ubuntu:latest
+            CMD ["/usr/sbin/apache2", "-D", "FOREGROUND"]
+        or
+            FROM ubuntu:latest
+            CMD /bin/bash
+
+    RUN:
+        Used to execute any commands on top of current Docker Image.
+        Executes the command when you are building Image.
+
+            FROM ubuntu:latest
+            MAINTAINER support@fosstechnix.com
+            RUN apt-get update
+            RUN apt-get install -y apache2
+
+    EXPOSE:
+        Used to specify Network port for Docker container.
+
+            EXPOSE 80
+
+    ENV:
+        Used to set Environment Variables with key and value.
+
+            FROM node:12
+            ENV abc=HELLO
+            ENV abca=HELLa
+
+    ADD:
+        Copies a file and directory from your host to Docker image, however can also
+        fetch remote URLs, extract TAR/ZIP files, etc. It is used downloading remote
+        resources, extracting TAR/ZIP files.
+
+            ADD java/jdk-8u231-linux-x64.tar /opt/jdk/
+            ADD https://fosstechnix.com/test.tar.xz /home/ubuntu/test/
+
+    COPY:
+        Used to Copies a file or directory from your host to Docker image. It is used
+        to simply copying files or directories into the build context.
+
+            COPY index.html /var/www/html
+
+    ENTRYPOINT:
+        Used you to configure a container that you can run as an executable.
+        Specifies a commands that will executes when the Docker container starts.
+
+            ENTRYPOINT ["executable", "param1", "param2"]
+
+    VOLUME:
+        Used to create or mount volume to docker container.
+        The docker run command initializes the newly created volume with any data that
+        exists at the specified location within the base image.
+
+            FROM ubuntu
+            RUN mkdir /myvol
+            RUN echo "hello world" > /myvol/greeting
+            VOLUME /myvol
+
+        This Dockerfile results in an image that causes docker run to create a new mount
+        point at /myvol and copy the greeting file into the newly created volume.
+
+    USER:
+        Used to set the user name and UID when running container.
+
+            RUN adduser -D admin
+            USER admin
+
+    WORKDIR:
+        Used to set the working directory.
+
+            FROM ubuntu:16.04
+            WORKDIR /project
+            RUN npm install
+            WORKDIR ../project2
+            RUN touch file1.cpp
+
+    ARG:
+        Used to set Environment variables with key and value during the image build.
+
+            ARG JAVA_PATH=/opt/jdk/jdk1.8.0_251
+            ENV JAVA_HOME ${JAVA_PATH}
 
 
 -------------------------------------------------------------------------------------------------
@@ -339,19 +458,5 @@ Alpine Linux:
 
 
 -------------------------------------------------------------------------------------------------
-
-
-
-- Has to be done in Docker-Compose
-- Each Docker image must have the same name as its corresponding service.
-- Each service has to run in a dedicated container.
-- For performance matters, the containers must be built either from the penultimate stable
-	version of Alpine Linux, or from Debian Buster. The choice is yours.
-- You also have to write your own Dockerfiles, one per service. The Dockerfiles must
-	be called in your docker-compose.yaml by your Makefile.
-- It means you have to build yourself the Docker images of your project. It is then for-
-	bidden to pull ready-made Docker images, as well as using services such as DockerHub
-	(Alpine/Debian being excluded from this rule).
-
 
 </code>
