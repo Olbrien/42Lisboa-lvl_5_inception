@@ -3,8 +3,12 @@
 all:	up
 
 up:
-	cd srcs && docker-compose up --build -d
-	sudo bash hosts.sh add
+	@if [ -f srcs/.env ]; then \
+		cd srcs && docker-compose up --build -d; \
+		cd .. && sudo bash hosts.sh add; \
+	else \
+		printf "\n\033[1;22m!! You need to add the .env variable !! \e[0m \n\n"; \
+	fi
 
 down:
 	cd srcs && docker-compose down

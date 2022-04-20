@@ -5,12 +5,13 @@
 if [ $# -eq 0 ]
   then
     echo "This program is to be ran with Makefile!"
-	exit 1
+    echo "Also if you run it, you have to sudo bash to work because of SUDO_USER env."
+  exit 1
 fi
 
 if [ $1 == "add" ]
   then
-  
+
     # Gets the IP address of the Nginx container
     # Saves it on a variable
     echo -n `docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' nginx` > nginx.txt 
@@ -24,9 +25,9 @@ if [ $1 == "add" ]
     sudo sed -i '/42.fr/d' /etc/hosts
 
     # Appending to /etc/host
-    sudo sed -i '1i'$NGINX_DOCKER_IP' '$USERNAME'.42.fr' /etc/hosts
-    sudo sed -i '1i'$NGINX_DOCKER_IP' www.'$USERNAME'.42.fr' /etc/hosts
-    sudo sed -i '1i'$NGINX_DOCKER_IP' https://www.'$USERNAME'.42.fr' /etc/hosts
+    sudo sed -i '1i'$NGINX_DOCKER_IP' '${SUDO_USER}'.42.fr' /etc/hosts
+    sudo sed -i '1i'$NGINX_DOCKER_IP' www.'${SUDO_USER}'.42.fr' /etc/hosts
+    sudo sed -i '1i'$NGINX_DOCKER_IP' https://www.'${SUDO_USER}'.42.fr' /etc/hosts
 
 fi
 
