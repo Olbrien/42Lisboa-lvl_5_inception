@@ -1,11 +1,29 @@
 ![GitHub Logo](/extras/images/Success.png)
 
-###### <i>Recent Update on 14/04/2022.</i>
+###### <i>Recent Update on 17/04/2022.</i>
 • Started the project.
 
 ## Subject:
 
 You can find the subject of this project [here.](https://github.com/Olbrien/42Lisboa-lvl_5_inception/blob/main/extras/lvl_5_inception.pdf)
+
+## How to run:
+
+First download the repository.
+
+Make sure you have docker and docker-compose installed on your machine.
+
+You can start by going to the inception folder and type:\
+ `sudo make`
+
+Type `env | grep "USERNAME"` and get your username.
+
+Now, on your browser you can visit the webpage (username is your username, mine is tisantos).\
+`username.42.fr`\
+`www.username.42.fr`\
+`https://www.username.42.fr`\
+`https://localhost:443`
+
 
 ## Useful Links:
 

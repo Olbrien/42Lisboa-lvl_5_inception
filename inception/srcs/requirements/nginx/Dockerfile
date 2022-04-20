@@ -13,14 +13,15 @@ RUN apt install openssl -yq
 RUN ln -sf /usr/share/zoneinfo/Europe/Lisbon /etc/localtime
 
 # Create SSL Key
-RUN mkdir ssl
+RUN mkdir /etc/nginx/ssl
+RUN chmod 700 /etc/nginx/ssl
 RUN openssl req -newkey rsa:4096 \
                 -x509 \
                 -sha256 \
                 -days 3650 \
                 -nodes \
-                -out /ssl/example.crt \
-                -keyout /ssl/example.key \
+                -out /etc/nginx/ssl/example.crt \
+                -keyout /etc/nginx/ssl/example.key \
                 -subj "/C=PO/ST=Lisbon/L=Lisbon/O=42Lisboa/OU=42Lisboa/CN=tisantos.42.fr"
 
 # Copy tools inside the container

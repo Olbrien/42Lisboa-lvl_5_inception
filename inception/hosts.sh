@@ -34,7 +34,7 @@ fi
 if [ $1 == "delete" ]
   then
 
-    # Removing extra 42.fr lines
+    # Removing 42.fr lines
     sudo sed -i '/42.fr/d' /etc/hosts
 
 fi

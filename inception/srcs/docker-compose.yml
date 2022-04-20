@@ -1,11 +1,11 @@
 version: '3'
-services:    
+services:
   nginx:
     build: ./requirements/nginx
     container_name: nginx
     restart: always
     ports:
-      - 5555:80
+      - 443:443
     environment:
       SCHOOL_USERNAME: ${USERNAME}
     networks:
