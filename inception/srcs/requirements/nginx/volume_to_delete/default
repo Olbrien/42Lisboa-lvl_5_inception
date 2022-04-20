@@ -23,12 +23,13 @@ server {
         # Add index.php to the list if you are using PHP
         index index.html index.htm index.nginx-debian.html;
 
-        server_name tisantos.42.fr www.tisantos.42.fr https://tisantos.42.fr;
+        server_name __SCHOOL_USERNAME__.42.fr;
+        server_name www.__SCHOOL_USERNAME__.42.fr;
+        server_name https://__SCHOOL_USERNAME__.42.fr;
 
         location / {
                 # First attempt to serve request as file, then
-                # as directory, then fall back to displaying a 404.
-                return https://www.google.com;
+                # as directory, then fall back to displaying a 404.                
                 try_files $uri $uri/ =404;
         }
 
