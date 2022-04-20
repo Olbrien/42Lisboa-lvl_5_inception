@@ -14,7 +14,11 @@ First download the repository.
 Make sure you have docker and docker-compose installed on your machine.
 
 You can start by going to the inception folder and type:\
- `sudo make`
+ `make`
+
+Don't do `sudo make` because with sudo, {USERNAME} is blank and it's substituted by {SUDO_USER}.
+
+Wait for the container to build.
 
 Type `env | grep "USERNAME"` and get your username.
 
