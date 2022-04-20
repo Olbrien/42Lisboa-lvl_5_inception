@@ -1,20 +1,37 @@
 version: '3'
 services:    
-  wordpress:
-    build: ./requirements/wordpress
-    container_name: wordpress
+  nginx:
+    build: ./requirements/nginx
+    container_name: nginx
     restart: always
     ports:
-      - 9000:80
+      - 5555:80
     environment:
-      WORDPRESS_DB_HOST: ${WORDPRESS_DB_HOST}:3306
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      WORDPRESS_DB_NAME: ${MYSQL_DATABASE}
-      WORDPRESS_DB_USER: ${MYSQL_USER}
-      WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD}
-      WORDPRESS_TABLE_PREFIX: ${WORDPRESS_TABLE_PREFIX}
+      SCHOOL_USERNAME: ${USERNAME}
     networks:
-      - 42Network
+      - inception
+    volumes:
+      - ./requirements/nginx/volume_to_delete:/etc/nginx/sites-enabled/
+
+
+
+
+
+  # wordpress:
+  #   build: ./requirements/wordpress
+  #   container_name: wordpress
+  #   restart: always
+  #   ports:
+  #     - 9000:80
+  #   environment:
+  #     WORDPRESS_DB_HOST: ${WORDPRESS_DB_HOST}:3306
+  #     MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+  #     WORDPRESS_DB_NAME: ${MYSQL_DATABASE}
+  #     WORDPRESS_DB_USER: ${MYSQL_USER}
+  #     WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD}
+  #     WORDPRESS_TABLE_PREFIX: ${WORDPRESS_TABLE_PREFIX}
+  #   networks:
+  #     - inception
     
 networks:
-  42Network:
+  inception:

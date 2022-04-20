@@ -9,16 +9,30 @@ You can find the subject of this project [here.](https://github.com/Olbrien/42Li
 
 ## Useful Links:
 
-[hub.docker.com](https://hub.docker.com)
+### Docker:
+
+[Docker Hub](https://hub.docker.com)
 
 [Dockerfile Instructions](https://www.fosstechnix.com/dockerfile-instructions/)\
 [Docker Compose Specifications](https://docs.docker.com/compose/compose-file/)
 
-[Debian Versions](https://wiki.debian.org/DebianBuster)
+### Debian:
+
+[Debian Buster Versions](https://wiki.debian.org/DebianBuster)
+
+### Nginx:
+
+[How to Configure Nginx](https://www.linode.com/docs/guides/how-to-configure-nginx)\
+[Creating a Self-Signed SSL Certificate](https://linuxize.com/post/creating-a-self-signed-ssl-certificate/)
+
+### General:
+
+[Mapping Hostname Ports](https://www.baeldung.com/linux/mapping-hostnames-ports)
 
 [WordPress Deployment with NGINX, PHP-FPM and MariaDB using Docker Compose](https://medium.com/swlh/wordpress-deployment-with-nginx-php-fpm-and-mariadb-using-docker-compose-55f59e5c1a)\
 [Setup WordPress on an Nginx LEMP Server](https://www.youtube.com/watch?v=q1c_66QjRYo)\
 [Install WordPress with Nginx on Debian 10/11](https://markontech.com/linux/install-wordpress-with-nginx-on-debian-10-11/)
+
 
 ## Research:
 
@@ -448,6 +462,9 @@ Nginx:
 	NGINX is open source software for web serving, reverse proxying, caching, load balancing,
 	media streaming, and more.
 
+  Check Nginx status:
+      service nginx status
+
 
 -------------------------------------------------------------------------------------------------
 
@@ -456,9 +473,7 @@ Alpine Linux:
 	Small. Simple. Secure. Alpine Linux is a security-oriented, lightweight Linux distribution
 	based on musl libc and busybox.
 
-	The latest version on June 7 accordingly to https://hub.docker.com/_/alpine
-	is "3.13.5, 3.13, 3, latest".
-	The penultimate version is "3.12.7, 3.12"
+	The latest version https://www.alpinelinux.org/releases/
 
 	To see the version of your Alpine Linux:
 		cat /etc/alpine-release
