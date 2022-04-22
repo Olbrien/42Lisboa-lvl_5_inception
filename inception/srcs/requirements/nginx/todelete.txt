@@ -1,0 +1,8 @@
+Volume, não precisas aqui do Volume do Default.
+Tens que apagar aqui e do docker-compose.
+
+Não precisas do default.bak
+
+No startup.sh podes apagar a ultima linha que diz para testes purposes
+
+E no fim alterar a cena para daemon off.

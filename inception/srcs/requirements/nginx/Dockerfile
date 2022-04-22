@@ -1,3 +1,5 @@
+# Penultimate Debian:Buster version 
+# https://wiki.debian.org/DebianBuster
 FROM debian:10.11
 
 # update needed to use apt-get install
