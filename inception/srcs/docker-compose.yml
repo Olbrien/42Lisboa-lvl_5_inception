@@ -1,17 +1,17 @@
 version: '3.7'
 services:
-  # nginx:
-  #   build: ./requirements/nginx
-  #   container_name: nginx
-  #   restart: always
-  #   ports:
-  #     - 443:443
-  #   environment:
-  #     SCHOOL_USERNAME: ${USERNAME}
-  #   networks:
-  #     - inception
-  #   volumes:
-  #     - /home/tisantos/data/nginx:/etc/nginx/sites-enabled/
+  nginx:
+    build: ./requirements/nginx
+    container_name: nginx
+    restart: always
+    ports:
+      - 443:443
+    environment:
+      SCHOOL_USERNAME: ${USERNAME}
+    networks:
+      - inception
+    volumes:
+      - nginx-volume:/etc/nginx/sites-enabled/
 
   # wordpress:
   #   build: ./requirements/wordpress
@@ -44,7 +44,7 @@ services:
 
 networks:
   inception:
-  
+
 volumes:
   mariadb-volume:
     driver: local
@@ -52,6 +52,9 @@ volumes:
       type: none
       device: /home/${USERNAME}/data/mariadb-volume
       o: bind
-
-#/home/${USERNAME}/data/mariadb
-#/home/${USERNAME}/data/wordpress
+  nginx-volume:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/${USERNAME}/data/nginx-volume
+      o: bind

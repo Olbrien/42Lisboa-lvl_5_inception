@@ -1,7 +1,7 @@
-Volume, não precisas aqui do Volume do Default.
-Tens que apagar aqui e do docker-compose.
+Tens que apagar o volume do docker-compose. Não podes ter.
+E tens que apagar do Makefile também para não criar pasta.
+Aliás deixa-o, mas comentado.
 
-Não precisas do default.bak
 
 No startup.sh podes apagar a ultima linha que diz para testes purposes
 

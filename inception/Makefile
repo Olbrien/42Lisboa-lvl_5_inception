@@ -21,6 +21,7 @@ clean: delete_volumes
 	@cd srcs && docker-compose down
 	@cd srcs && docker system prune -a --volumes
 	@sudo bash hosts.sh delete
+	docker volume rm -f $$(docker volume ls)
 
 fclean:	clean delete_volumes
 
