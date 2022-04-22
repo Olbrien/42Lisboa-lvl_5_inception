@@ -59,6 +59,7 @@ You'll see `http://localhost:443` doesn't work because it's not https.
 ### General:
 
 [Names mounted Volumes](https://stackoverflow.com/questions/35841241/docker-compose-named-mounted-volume)\
+[Ports vs Expose](https://stackoverflow.com/questions/40801772/what-is-the-difference-between-docker-compose-ports-vs-expose)\
 [WordPress Deployment with NGINX, PHP-FPM and MariaDB using Docker Compose](https://medium.com/swlh/wordpress-deployment-with-nginx-php-fpm-and-mariadb-using-docker-compose-55f59e5c1a)\
 [Setup WordPress on an Nginx LEMP Server](https://www.youtube.com/watch?v=q1c_66QjRYo)\
 [Install WordPress with Nginx on Debian 10/11](https://markontech.com/linux/install-wordpress-with-nginx-on-debian-10-11/)

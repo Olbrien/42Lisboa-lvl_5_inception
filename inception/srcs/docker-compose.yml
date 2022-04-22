@@ -1,38 +1,39 @@
 version: '3.7'
 services:
-  nginx:
-    build: ./requirements/nginx
-    container_name: nginx
-    restart: always
-    ports:
-      - 443:443
-    environment:
-      SCHOOL_USERNAME: ${USERNAME}
-    networks:
-      - inception
-    volumes:
-      - nginx-volume:/etc/nginx/sites-enabled/
-
-  # wordpress:
-  #   build: ./requirements/wordpress
-  #   container_name: wordpress
+  # nginx:
+  #   build: ./requirements/nginx
+  #   container_name: nginx
   #   restart: always
   #   ports:
-  #     - 9000:80
+  #     - 443:443
   #   environment:
-  #     WORDPRESS_DB_HOST: ${WORDPRESS_DB_HOST}:3306
-  #     MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-  #     WORDPRESS_DB_NAME: ${MYSQL_DATABASE}
-  #     WORDPRESS_DB_USER: ${MYSQL_USER}
-  #     WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD}
-  #     WORDPRESS_TABLE_PREFIX: ${WORDPRESS_TABLE_PREFIX}
+  #     SCHOOL_USERNAME: ${USERNAME}
   #   networks:
   #     - inception
+  #   volumes:
+  #     - nginx-volume:/etc/nginx/sites-enabled/
+
+  wordpress:
+    build: ./requirements/wordpress
+    container_name: wordpress
+    restart: always
+    expose:
+      - 9000
+    environment:
+      WORDPRESS_DB_HOST: ${WORDPRESS_DB_HOST}:3306
+      WORDPRESS_DB_USER: ${MYSQL_USER}
+      WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD}
+      WORDPRESS_DB_NAME: ${MYSQL_DATABASE}
+      WORDPRESS_TABLE_PREFIX: ${WORDPRESS_TABLE_PREFIX}
+    networks:
+      - inception
 
   mariadb:
     build: ./requirements/mariadb
     container_name: mariadb
     restart: always
+    expose:
+      - 3306
     environment:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
