@@ -1,21 +1,17 @@
-version: '3'
+version: '3.7'
 services:
-  nginx:
-    build: ./requirements/nginx
-    container_name: nginx
-    restart: always
-    ports:
-      - 443:443
-    environment:
-      SCHOOL_USERNAME: ${USERNAME}
-    networks:
-      - inception
-    volumes:
-      - ./requirements/nginx/volume_to_delete:/etc/nginx/sites-enabled/
-
-
-
-
+  # nginx:
+  #   build: ./requirements/nginx
+  #   container_name: nginx
+  #   restart: always
+  #   ports:
+  #     - 443:443
+  #   environment:
+  #     SCHOOL_USERNAME: ${USERNAME}
+  #   networks:
+  #     - inception
+  #   volumes:
+  #     - /home/tisantos/data/nginx:/etc/nginx/sites-enabled/
 
   # wordpress:
   #   build: ./requirements/wordpress
@@ -32,6 +28,30 @@ services:
   #     WORDPRESS_TABLE_PREFIX: ${WORDPRESS_TABLE_PREFIX}
   #   networks:
   #     - inception
-    
+
+  mariadb:
+    build: ./requirements/mariadb
+    container_name: mariadb
+    restart: always
+    environment:
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    networks:
+      - inception
+    volumes:
+      - mariadb-volume:/var/lib/mysql
+
 networks:
   inception:
+  
+volumes:
+  mariadb-volume:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/${USERNAME}/data/mariadb-volume
+      o: bind
+
+#/home/${USERNAME}/data/mariadb
+#/home/${USERNAME}/data/wordpress
