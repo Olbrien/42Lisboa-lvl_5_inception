@@ -28,6 +28,9 @@ Now, on your browser you can visit the webpage (username is your username, mine 
 `https://www.username.42.fr`\
 `https://localhost:443`
 
+You'll see `http://localhost:443` doesn't work because it's not https.
+
+
 
 ## Useful Links:
 
@@ -45,12 +48,17 @@ Now, on your browser you can visit the webpage (username is your username, mine 
 ### Nginx:
 
 [How to Configure Nginx](https://www.linode.com/docs/guides/how-to-configure-nginx)\
-[Creating a Self-Signed SSL Certificate](https://linuxize.com/post/creating-a-self-signed-ssl-certificate/)
+[Creating a Self-Signed SSL Certificate](https://linuxize.com/post/creating-a-self-signed-ssl-certificate/)\
+[Mapping Hostname Ports](https://www.baeldung.com/linux/mapping-hostnames-ports)
+
+### MariaDB:
+
+[Change MariaDB root user](https://www.digitalocean.com/community/tutorials/how-to-reset-your-mysql-or-mariadb-root-password)\
+[Create MariaDB user and database in bash](https://stackoverflow.com/questions/33470753/create-mysql-database-and-user-in-bash-script)
 
 ### General:
 
-[Mapping Hostname Ports](https://www.baeldung.com/linux/mapping-hostnames-ports)
-
+[Names mounted Volumes](https://stackoverflow.com/questions/35841241/docker-compose-named-mounted-volume)\
 [WordPress Deployment with NGINX, PHP-FPM and MariaDB using Docker Compose](https://medium.com/swlh/wordpress-deployment-with-nginx-php-fpm-and-mariadb-using-docker-compose-55f59e5c1a)\
 [Setup WordPress on an Nginx LEMP Server](https://www.youtube.com/watch?v=q1c_66QjRYo)\
 [Install WordPress with Nginx on Debian 10/11](https://markontech.com/linux/install-wordpress-with-nginx-on-debian-10-11/)
@@ -500,8 +508,83 @@ Alpine Linux:
 	To see the version of your Alpine Linux:
 		cat /etc/alpine-release
 
+-------------------------------------------------------------------------------------------------
+
+Mysql:
+
+  To start mysql:
+
+    Starts mysql service:
+        service mysql start
+
+    Starts mysql on the user root:
+        mysql -u root
+
+    Starts mysql on the user tisantos with password:
+        mysql -u tisantos -p
+
+
+  Commands inside mysql:
+  
+    CREATE DATABASE wordpressdb;
+        Creates a database called wordpressdb.
+
+    SHOW databases;
+        Shows a list of databases.    
+
+
+    CREATE user 'tisantos'@'localhost' identified by 'password';
+        Creates user tisantos with the password, password.
+
+    SELECT user FROM mysql.user;
+        Shows a list of users.
+
+    SELECT user();
+        Shows current user.
+
+    
+    GRANT ALL PRIVILEGES ON wordpressdb.* TO 'tisantos'@'localhost';
+        After creating the database wordpressdb on root, for tisantos to use it, you have
+        to grant him access.
+  
+    FLUSH PRIVILEGES;
+        After giving privileges you should flush it and exit to be accessed.
+    
+    EXIT;
+        Exits mysql.
+
+
+    USE database_name;
+        Goes to the database.
+          USE wordpress_db;
+
+    SELECT database();
+        Shows current database.
+
+    SHOW tables;
+        Lists all tables inside the database.
+
+    
+    CREATE TABLE table_name;
+        Creates a table, if you are inside the database.
+            CREATE TABLE teste_table(
+                number int,
+                text varchar(255)
+            );
+    
+    INSERT INTO table_name VALUES (...);
+        Inserts data inside table_name.
+            INSERT INTO teste_table VALUES(10, 'Olah!');
+
+
+
+  Commands outside mysql:
+
+    mysqlshow
+        Shows a list of databases.
 
 
 -------------------------------------------------------------------------------------------------
+
 
 </code>
