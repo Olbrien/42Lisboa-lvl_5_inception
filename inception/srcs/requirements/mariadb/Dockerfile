@@ -16,6 +16,7 @@ RUN ln -sf /usr/share/zoneinfo/Europe/Lisbon /etc/localtime
 
 # Add files to the container
 COPY /tools/ /tmp/
+COPY /conf/wordpress.sql /tmp/
 
 # Configure MariaDB
 COPY /conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf

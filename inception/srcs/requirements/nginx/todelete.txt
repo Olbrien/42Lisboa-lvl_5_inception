@@ -1,8 +1,0 @@
-Tens que apagar o volume do docker-compose. Não podes ter.
-E tens que apagar do Makefile também para não criar pasta.
-Aliás deixa-o, mas comentado.
-
-
-No startup.sh podes apagar a ultima linha que diz para testes purposes
-
-E no fim alterar a cena para daemon off.

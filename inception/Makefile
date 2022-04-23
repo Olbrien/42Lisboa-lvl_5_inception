@@ -5,7 +5,7 @@ all:	up
 up: create_volumes
 	@if [ -f srcs/.env ]; then \
 		sudo echo "Up!"; \
-		sudo docker network create inception-network; \
+		docker network create inception-network || true; \
 		cd srcs && docker-compose up --build -d; \
 		cd .. && sudo bash hosts.sh add; \
 	else \
@@ -20,9 +20,9 @@ down:
 clean: delete_volumes
 	@sudo echo "Clean!";
 	@cd srcs && docker-compose down
-	@sudo bash hosts.sh delete
-	docker volume rm -f $$(docker volume ls)
-	@sudo docker network rm inception-network
+	@sudo bash hosts.sh delete	
+	@sudo docker network rm inception-network || true
+	docker volume rm $$(docker volume ls -qf "dangling="true"") || true
 
 fclean:	clean delete_volumes
 	@sudo echo "FClean!";
@@ -33,11 +33,9 @@ re:		fclean up
 create_volumes:
 	@sudo mkdir -p /home/${USERNAME}/data/mariadb-volume
 	@sudo mkdir -p /home/${USERNAME}/data/wordpress-volume
-	@sudo mkdir -p /home/${USERNAME}/data/nginx-volume
 
 delete_volumes:
 	@sudo rm -fr /home/${USERNAME}/data/mariadb-volume
 	@sudo rm -fr /home/${USERNAME}/data/wordpress-volume
-	@sudo rm -fr /home/${USERNAME}/data/nginx-volume
 
 #### ######## #### #### ######## #### #### ######## #### #### ######## #### #### ######## ####

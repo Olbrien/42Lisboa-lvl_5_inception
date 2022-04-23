@@ -30,7 +30,10 @@ Now, on your browser you can visit the webpage (username is your username, mine 
 
 You'll see `http://localhost:443` doesn't work because it's not https.
 
-
+Make sure your browser never stores cookies for 127.0.0.1 or localhost, otherwise \
+you might be seeing pages that are just stored in cookies and are not really built. \
+Also make sure your browser doesn't force a 443.\
+https://stackoverflow.com/questions/30532471/firefox-redirects-to-https
 
 ## Useful Links:
 
@@ -56,11 +59,13 @@ You'll see `http://localhost:443` doesn't work because it's not https.
 [Change MariaDB root user](https://www.digitalocean.com/community/tutorials/how-to-reset-your-mysql-or-mariadb-root-password)\
 [Create MariaDB user and database in bash](https://stackoverflow.com/questions/33470753/create-mysql-database-and-user-in-bash-script)\
 [Allow Remote Access to MariaDB](https://websiteforstudents.com/allow-remote-access-to-mariadb-database-server-on-ubuntu-18-04/)\
-[ERROR 1130 (HY000): Host ‘hostname’ is not allowed to connect to this MySQL server](http://bucktownbell.com/?p=653)
+[ERROR 1130 (HY000): Host ‘hostname’ is not allowed to connect to this MySQL server](http://bucktownbell.com/?p=653)\
+[Import Export SQL](https://www.digitalocean.com/community/tutorials/how-to-import-and-export-databases-in-mysql-or-mariadb)
 
 ### Wordpress:
 
-[getenv() Wordpress](https://serverfault.com/questions/915920/getting-environment-variables-in-php-fpm-with-nginx)
+[getenv() Wordpress](https://serverfault.com/questions/915920/getting-environment-variables-in-php-fpm-with-nginx)\
+[Install Wordpress via Shell](https://code.tutsplus.com/articles/download-and-install-wordpress-via-the-shell-over-ssh--wp-24403)
 
 ### General:
 

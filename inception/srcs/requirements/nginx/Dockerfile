@@ -28,7 +28,10 @@ RUN openssl req -newkey rsa:4096 \
 
 # Copy tools inside the container
 COPY /tools/ /tmp/
-COPY /conf/ /etc/nginx/sites-enabled
+#COPY /conf/ /etc/nginx/sites-enabled
+#RUN ln -sf /etc/nginx/sites-enabled/default /etc/nginx/sites-available/
 
-ENTRYPOINT ["sh","-c", "/bin/bash /tmp/startup.sh; service nginx start; tail -f /dev/null"]
-#CMD ["nginx", "-g", "daemon off;"]
+COPY /conf/nginx.conf /etc/nginx/
+
+
+ENTRYPOINT ["sh","-c", "/bin/bash /tmp/startup.sh;"]

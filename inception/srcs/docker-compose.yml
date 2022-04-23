@@ -16,7 +16,6 @@ services:
     networks:
       - inception-network
     volumes:
-      - nginx-volume:/etc/nginx/sites-enabled/
       - wordpress-volume:/var/www/html
 
   wordpress:
