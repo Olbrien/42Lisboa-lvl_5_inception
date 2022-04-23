@@ -16,16 +16,28 @@ server {
         ssl_certificate /etc/nginx/ssl/example.crt;
         ssl_certificate_key /etc/nginx/ssl/example.key;
 
-        root /var/www/html;
-
-        index index.html index.htm index.nginx-debian.html;
+        root /var/www/html/wordpress;
+        index index.php index.html index.htm;
 
         server_name _;
         server_name __SCHOOL_USERNAME__.42.fr;
         server_name www.__SCHOOL_USERNAME__.42.fr;
         server_name https://__SCHOOL_USERNAME__.42.fr;
 
+
+        access_log /var/log/nginx/wordpress_access.log;
+        error_log /var/log/nginx/wordpress_error.log;
+
         location / {
-                try_files $uri $uri/ =404;
+          try_files $uri $uri/ /index.php?$args;
+        }
+
+        location ~ \.php$ {
+          fastcgi_split_path_info ^(.+\.php)(/.+)$;
+          fastcgi_pass __NGINX_WORDPRESS_CONTAINER_NAME__:__NGINX_WORDPRESS_PORT__;
+          fastcgi_index index.php;
+          include fastcgi_params;
+          fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+          fastcgi_param SCRIPT_NAME $fastcgi_script_name;
         }
 }

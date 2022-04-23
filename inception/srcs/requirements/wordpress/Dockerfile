@@ -3,28 +3,35 @@
 FROM debian:10.11
 
 # update needed to use apt-get install
-# apt-utils and dialog is to surpress annoying warning
 # -yq: say yes to every installation and is also quiet
 RUN apt-get update -yq
-#RUN apt-get install apt-utils -yq
-#RUN apt-get install dialog -yq
-
-# These ones are to delete
-# Just for tests
-RUN apt-get install nginx -yq
-#RUN apt-get install mariadb-server -yq
 
 # Necessary Libraries and Packages
-RUN apt-get install cron -yq
 RUN apt-get install vim -yq
-#RUN apt-get install php-cli php-fpm php-mysql php-json php-opcache php-mbstring php-xml \
-#                    php-gd php-curl -yq
+RUN apt-get install wget -yq
+RUN apt-get install php7.3-cli php7.3-fpm php7.3-mysql php7.3-json php7.3-opcache \
+                    php7.3-mbstring php7.3-xml php7.3-cgi php-pear php7.3-zip \
+                    php-net-socket php7.3-common php7.3-gd php7.3-curl \
+                    php-xml-util php7.3-gettext php7.3-bcmath -yq
+
+# Put the date correct
+RUN ln -sf /usr/share/zoneinfo/Europe/Lisbon /etc/localtime
 
 # Add files to the container
-ADD tools .
+COPY /tools/ /tmp/
 
-# Configure Crontab to run boot.sh every time the container restarts
-RUN echo @reboot /tmp/boot.sh >> /var/spool/cron/crontabs/root
+# Prepare the wordpress
+RUN mkdir /var/www
+RUN mkdir /var/www/html
+WORKDIR /var/www/html
+RUN wget https://wordpress.org/latest.tar.gz
+RUN tar -xvzf latest.tar.gz
+RUN rm latest.tar.gz
+WORKDIR /var/www/html/wordpress
+COPY /conf/ .
+RUN chown -R www-data:www-data /var/www/html/wordpress
 
+# Prepare the php
+COPY /conf/www.conf /etc/php/7.3/fpm/pool.d/www.conf
 
-ENTRYPOINT [ "tail", "-f", "/dev/null" ]
+ENTRYPOINT ["sh","-c", "/bin/bash /tmp/startup.sh; tail -f /dev/null"]

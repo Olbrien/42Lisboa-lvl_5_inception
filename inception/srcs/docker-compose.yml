@@ -1,32 +1,41 @@
 version: '3.7'
 services:
-  # nginx:
-  #   build: ./requirements/nginx
-  #   container_name: nginx
-  #   restart: always
-  #   ports:
-  #     - 443:443
-  #   environment:
-  #     SCHOOL_USERNAME: ${USERNAME}
-  #   networks:
-  #     - inception
-  #   volumes:
-  #     - nginx-volume:/etc/nginx/sites-enabled/
+  nginx:
+    build: ./requirements/nginx
+    container_name: nginx
+    restart: always
+    depends_on:
+      - wordpress
+      - mariadb
+    ports:
+      - 443:443
+    environment:
+      SCHOOL_USERNAME: ${USERNAME}
+      NGINX_WORDPRESS_CONTAINER_NAME: ${NGINX_WORDPRESS_CONTAINER_NAME}
+      NGINX_WORDPRESS_PORT: ${NGINX_WORDPRESS_PORT}
+    networks:
+      - inception-network
+    volumes:
+      - nginx-volume:/etc/nginx/sites-enabled/
+      - wordpress-volume:/var/www/html
 
   wordpress:
     build: ./requirements/wordpress
     container_name: wordpress
     restart: always
+    depends_on:
+      - mariadb
     expose:
       - 9000
     environment:
-      WORDPRESS_DB_HOST: ${WORDPRESS_DB_HOST}:3306
-      WORDPRESS_DB_USER: ${MYSQL_USER}
-      WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD}
-      WORDPRESS_DB_NAME: ${MYSQL_DATABASE}
-      WORDPRESS_TABLE_PREFIX: ${WORDPRESS_TABLE_PREFIX}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DB_HOST: ${MYSQL_DB_HOST}
     networks:
-      - inception
+      - inception-network
+    volumes:
+      - wordpress-volume:/var/www/html
 
   mariadb:
     build: ./requirements/mariadb
@@ -39,12 +48,15 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
     networks:
-      - inception
+      - inception-network
     volumes:
       - mariadb-volume:/var/lib/mysql
 
 networks:
-  inception:
+  inception-network:
+    driver: bridge
+    ipam:
+      driver: default
 
 volumes:
   mariadb-volume:
@@ -58,4 +70,10 @@ volumes:
     driver_opts:
       type: none
       device: /home/${USERNAME}/data/nginx-volume
+      o: bind
+  wordpress-volume:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/${USERNAME}/data/wordpress-volume
       o: bind

@@ -5,6 +5,7 @@ all:	up
 up: create_volumes
 	@if [ -f srcs/.env ]; then \
 		sudo echo "Up!"; \
+		sudo docker network create inception-network; \
 		cd srcs && docker-compose up --build -d; \
 		cd .. && sudo bash hosts.sh add; \
 	else \
@@ -19,11 +20,13 @@ down:
 clean: delete_volumes
 	@sudo echo "Clean!";
 	@cd srcs && docker-compose down
-	@cd srcs && docker system prune -a --volumes
 	@sudo bash hosts.sh delete
 	docker volume rm -f $$(docker volume ls)
+	@sudo docker network rm inception-network
 
 fclean:	clean delete_volumes
+	@sudo echo "FClean!";
+	@cd srcs && docker system prune -a --volumes
 
 re:		fclean up
 

@@ -17,7 +17,7 @@ RUN ln -sf /usr/share/zoneinfo/Europe/Lisbon /etc/localtime
 # Add files to the container
 COPY /tools/ /tmp/
 
-# MariaDB Port
-EXPOSE 3306
+# Configure MariaDB
+COPY /conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 
 ENTRYPOINT ["sh","-c", "/bin/bash /tmp/startup.sh; tail -f /dev/null"]

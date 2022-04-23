@@ -54,7 +54,13 @@ You'll see `http://localhost:443` doesn't work because it's not https.
 ### MariaDB:
 
 [Change MariaDB root user](https://www.digitalocean.com/community/tutorials/how-to-reset-your-mysql-or-mariadb-root-password)\
-[Create MariaDB user and database in bash](https://stackoverflow.com/questions/33470753/create-mysql-database-and-user-in-bash-script)
+[Create MariaDB user and database in bash](https://stackoverflow.com/questions/33470753/create-mysql-database-and-user-in-bash-script)\
+[Allow Remote Access to MariaDB](https://websiteforstudents.com/allow-remote-access-to-mariadb-database-server-on-ubuntu-18-04/)\
+[ERROR 1130 (HY000): Host ‘hostname’ is not allowed to connect to this MySQL server](http://bucktownbell.com/?p=653)
+
+### Wordpress:
+
+[getenv() Wordpress](https://serverfault.com/questions/915920/getting-environment-variables-in-php-fpm-with-nginx)
 
 ### General:
 
@@ -584,6 +590,23 @@ Mysql:
     mysqlshow
         Shows a list of databases.
 
+
+  
+  Connect to mysql to check if it's working:
+
+    https://www.wpbeginner.com/wp-tutorials/how-to-fix-the-error-establishing-a-database-connection-in-wordpress/
+
+        <?php
+        $link = mysqli_connect('localhost', 'username', 'password');
+        if (!$link) {
+        die('Could not connect: ' . mysqli_error());
+        }
+        echo 'Connected successfully';
+        mysqli_close($link);
+        ?>
+
+    apt-get install php
+    apt-get install php-mysqli 
 
 -------------------------------------------------------------------------------------------------
 

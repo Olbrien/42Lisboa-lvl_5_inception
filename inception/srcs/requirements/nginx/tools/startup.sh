@@ -2,7 +2,6 @@
 # I substitute them here
 
 sed -i "s/__SCHOOL_USERNAME__/$SCHOOL_USERNAME/g" /etc/nginx/sites-enabled/default
+sed -i "s/__NGINX_WORDPRESS_CONTAINER_NAME__/$NGINX_WORDPRESS_CONTAINER_NAME/g" /etc/nginx/sites-enabled/default
+sed -i "s/__NGINX_WORDPRESS_PORT__/$NGINX_WORDPRESS_PORT/g" /etc/nginx/sites-enabled/default
 
-
-# Tests purpose, to delete
-sed -i 's/nginx/tisantos and skrillex/g' /var/www/html/index.nginx-debian.html
