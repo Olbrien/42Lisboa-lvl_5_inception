@@ -27,7 +27,8 @@ Wait for the container to build.
 
 Type `env | grep "USERNAME"` and get your username.
 
-Now, on your browser you can visit the webpage (username is your username, mine is tisantos).\
+Now, on your browser you can visit the webpage (username is your username, mine is tisantos).
+
 `username.42.fr`\
 `www.username.42.fr`\
 `https://www.username.42.fr`\
@@ -35,17 +36,17 @@ Now, on your browser you can visit the webpage (username is your username, mine 
 
 You'll see `http://localhost:443` doesn't work because it's not https.
 
-Make sure your browser never stores cookies for 127.0.0.1 or localhost, otherwise \
-you might be seeing pages that are just stored in cookies and are not really built. \
-Also make sure your browser doesn't force a 443.\
-https://stackoverflow.com/questions/30532471/firefox-redirects-to-https
+Make sure your browser never stores cookies for 127.0.0.1 or localhost, otherwise you might \
+be seeing pages that are just stored in cookies and are not really built. 
+
+Also make sure your browser doesn't force https.\
+[Firefox https redirect](https://stackoverflow.com/questions/30532471/firefox-redirects-to-https)
 
 ## Useful Links:
 
 ### Docker:
 
-[Docker Hub](https://hub.docker.com)
-
+[Docker Hub](https://hub.docker.com)\
 [Dockerfile Instructions](https://www.fosstechnix.com/dockerfile-instructions/)\
 [Docker Compose Specifications](https://docs.docker.com/compose/compose-file/)
 
@@ -619,8 +620,6 @@ Mysql:
 
     apt-get install php
     apt-get install php-mysqli 
-
--------------------------------------------------------------------------------------------------
 
 
 </code>
