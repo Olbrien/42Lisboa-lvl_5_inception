@@ -41,4 +41,4 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
 RUN chmod +x wp-cli.phar
 RUN mv wp-cli.phar /usr/local/bin/wp-cli
 
-ENTRYPOINT ["sh","-c", "/bin/bash /tmp/startup.sh; tail -f /dev/null"]
+ENTRYPOINT ["sh","-c", "/bin/bash /tmp/startup.sh;"]
