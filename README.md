@@ -60,7 +60,9 @@ https://stackoverflow.com/questions/30532471/firefox-redirects-to-https
 [Create MariaDB user and database in bash](https://stackoverflow.com/questions/33470753/create-mysql-database-and-user-in-bash-script)\
 [Allow Remote Access to MariaDB](https://websiteforstudents.com/allow-remote-access-to-mariadb-database-server-on-ubuntu-18-04/)\
 [ERROR 1130 (HY000): Host ‘hostname’ is not allowed to connect to this MySQL server](http://bucktownbell.com/?p=653)\
-[Import Export SQL](https://www.digitalocean.com/community/tutorials/how-to-import-and-export-databases-in-mysql-or-mariadb)
+[Import Export SQL](https://www.digitalocean.com/community/tutorials/how-to-import-and-export-databases-in-mysql-or-mariadb)\
+[Mysql unable to service mysql stop](https://orahow.com/mysql-cant-start-server-bind-on-tcp-ip-port-address-already-in-use-resolved/)\
+[Reset MariaDB root](https://kifarunix.com/a-simple-way-to-reset-mysql-mariadb-root-password/)
 
 ### Wordpress:
 

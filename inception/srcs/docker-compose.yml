@@ -54,8 +54,6 @@ services:
 networks:
   inception-network:
     driver: bridge
-    ipam:
-      driver: default
 
 volumes:
   mariadb-volume:

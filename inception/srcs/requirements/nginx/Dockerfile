@@ -26,11 +26,8 @@ RUN openssl req -newkey rsa:4096 \
                 -keyout /etc/nginx/ssl/example.key \
                 -subj "/C=PO/ST=Lisbon/L=Lisbon/O=42Lisboa/OU=42Lisboa/CN=tisantos.42.fr"
 
-# Copy tools inside the container
+# Copy startup and nginx.conf to their places
 COPY /tools/ /tmp/
-#COPY /conf/ /etc/nginx/sites-enabled
-#RUN ln -sf /etc/nginx/sites-enabled/default /etc/nginx/sites-available/
-
 COPY /conf/nginx.conf /etc/nginx/
 
 

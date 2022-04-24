@@ -8,7 +8,7 @@ RUN apt-get update -yq
 
 # Necessary Libraries and Packages
 RUN apt-get install vim -yq
-RUN apt-get install mariadb-client -yq
+RUN apt-get install procps -yq
 RUN apt-get install mariadb-server -yq
 
 # Put the date correct
@@ -20,5 +20,6 @@ COPY /conf/wordpress.sql /tmp/
 
 # Configure MariaDB
 COPY /conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
+RUN mysql_install_db
 
-ENTRYPOINT ["sh","-c", "/bin/bash /tmp/startup.sh; tail -f /dev/null"]
+ENTRYPOINT ["sh","-c", "/bin/bash /tmp/startup.sh;"]
