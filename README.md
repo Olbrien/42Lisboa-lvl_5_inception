@@ -7,6 +7,8 @@
 
 You can find the subject of this project [here.](https://github.com/Olbrien/42Lisboa-lvl_5_inception/blob/main/extras/lvl_5_inception.pdf)
 
+![](/extras/images/gif1.gif)
+
 ## How to run:
 
 First download the repository.
