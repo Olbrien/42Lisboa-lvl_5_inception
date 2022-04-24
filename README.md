@@ -39,7 +39,8 @@ You'll see `http://localhost:443` doesn't work because it's not https.
 Make sure your browser never stores cookies for 127.0.0.1 or localhost, otherwise you might \
 be seeing pages that are just stored in cookies and are not really built. 
 
-Also make sure your browser doesn't force https.\
+Also make sure your browser doesn't force https.
+
 [Firefox https redirect](https://stackoverflow.com/questions/30532471/firefox-redirects-to-https)
 
 ## Useful Links:
